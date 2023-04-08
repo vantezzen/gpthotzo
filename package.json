@@ -1,0 +1,26 @@
+{
+  "name": "aihotzo",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "browserScraper.js",
+  "scripts": {
+    "start": "ts-node-esm main.ts",
+    "tweet": "ts-node-esm tweet.ts",
+    "crossReference": "ts-node-esm crossReference.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22",
+    "openai": "^3.2.1",
+    "ts-node": "^10.9.1",
+    "twitter-api-v2": "^1.14.2",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11"
+  }
+}
