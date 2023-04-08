@@ -4,8 +4,8 @@ import { Configuration, OpenAIApi } from "openai";
 import trainingTweets from "./training-tweets.json" assert { type: "json" };
 import fs from "fs";
 
-const TRAINING_TWEET_COUNT = 40;
-const GENERATED_TWEET_COUNT = 40;
+const TRAINING_TWEET_COUNT = 30;
+const GENERATED_TWEET_COUNT = 70;
 
 const randomTweets = trainingTweets
   .sort(() => Math.random() - 0.5)

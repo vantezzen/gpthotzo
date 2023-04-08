@@ -3,7 +3,7 @@ dotenv.config();
 import fs from "fs";
 import { TwitterApi } from "twitter-api-v2";
 
-const TWEET_INTERVAL = 1000 * 60 * 10;
+const TWEET_INTERVAL = 1000 * 60 * 15;
 let interval: NodeJS.Timer;
 
 const postTweet = async () => {
