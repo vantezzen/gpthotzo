@@ -3,7 +3,8 @@ dotenv.config();
 import fs from "fs";
 import { TwitterApi } from "twitter-api-v2";
 
-const TWEET_INTERVAL = 1000 * 60 * 20;
+// Free API limit is 1500 tweets per month = 50 tweets per day = 2 tweets per hour
+const TWEET_INTERVAL = 1000 * 60 * 30;
 let interval: NodeJS.Timer;
 
 console.log("Starting tweet bot");
