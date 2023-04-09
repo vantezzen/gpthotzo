@@ -6,7 +6,11 @@ import { TwitterApi } from "twitter-api-v2";
 const TWEET_INTERVAL = 1000 * 60 * 20;
 let interval: NodeJS.Timer;
 
-const postTweet = async () => {
+console.log("Starting tweet bot");
+
+const postTweet = async (reason: string) => {
+  console.log("Posting tweet because of", reason);
+
   const tweets: string[] = JSON.parse(fs.readFileSync("tweets.json", "utf8"));
   const tweet = tweets.shift();
   if (!tweet) {
@@ -29,5 +33,8 @@ const postTweet = async () => {
   fs.writeFileSync("tweets.json", JSON.stringify(tweets, null, 2));
 };
 
-postTweet();
-interval = setInterval(postTweet, TWEET_INTERVAL);
+console.log("Posting first tweet");
+postTweet("first tweet");
+
+console.log("Setting interval");
+interval = setInterval(() => postTweet("cron"), TWEET_INTERVAL);
