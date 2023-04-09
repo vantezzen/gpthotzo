@@ -8,7 +8,8 @@
     "start": "ts-node-esm main.ts",
     "tweet": "ts-node-esm tweet.ts",
     "crossReference": "ts-node-esm crossReference.ts",
-    "tweet:pm": "pm2 start --name gpthotzo --interpreter ts-node-esm tweet.ts"
+    "tweet:pm": "pm2 start --name gpthotzo --interpreter ts-node-esm tweet.ts",
+    "fetchTweets": "ts-node-esm fetchTweets.ts"
   },
   "keywords": [],
   "author": "",

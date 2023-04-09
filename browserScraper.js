@@ -5,8 +5,17 @@
  * the limit has been reached
  */
 (async () => {
-  const TWEET_LIMIT = 350;
-  const SCROLL_DELAY = 5000;
+  const TWEET_LIMIT = 1000;
+  const SCROLL_DELAY = 300;
+  const TWEET_WORD_FILTER = [
+    // Dont use sensitive topics - we don't want to joke about them
+    "hanau",
+
+    // Remove links and ads for the book
+    "kiwi-verlag",
+    "http://",
+    "https://",
+  ];
 
   const scrapeTweets = () => {
     const tweets = Array.from(
@@ -16,7 +25,14 @@
       .map((tweet) => {
         const tweetTextElement = tweet.querySelector("div[lang]");
         if (!tweetTextElement) return false;
-        console.log(tweetTextElement);
+
+        const isRetweet = tweet.querySelector('[data-testid="socialContext"]');
+        if (isRetweet) return false;
+
+        const isTweetWithImage = tweet.querySelector(
+          '[data-testid="tweetPhoto"]'
+        );
+        if (isTweetWithImage) return false;
 
         const tweetTextItems = Array.from(tweetTextElement.children);
 
@@ -29,6 +45,14 @@
           }
         });
 
+        if (
+          TWEET_WORD_FILTER.some((word) =>
+            tweetText.toLowerCase().includes(word)
+          )
+        ) {
+          return false;
+        }
+
         return tweetText;
       })
       .filter(Boolean);
@@ -39,7 +63,8 @@
   while (tweets.size < TWEET_LIMIT) {
     const newTweets = await scrapeTweets();
     tweets = new Set([...tweets, ...newTweets]);
-    window.scrollTo(0, document.body.scrollHeight);
+
+    document.scrollingElement.scrollTop += 1000;
     console.log(`Scraped ${tweets.size} tweets`);
     window.tweets = tweets;
 
